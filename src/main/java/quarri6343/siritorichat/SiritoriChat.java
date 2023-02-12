@@ -3,6 +3,7 @@ package quarri6343.siritorichat;
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kunmc.lab.commandlib.CommandLib;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
@@ -23,11 +24,12 @@ import java.util.regex.Pattern;
 
 public final class SiritoriChat extends JavaPlugin implements Listener {
 
-    private static Character currentCharacter = 'り';
+    public static Character currentCharacter = 'り';
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
+        CommandLib.register(this, new SwapCommand());
         new BukkitRunnable() {
             @Override
             public void run() {
