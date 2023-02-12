@@ -1,0 +1,4 @@
+name: SiritoriChat
+version: '${version}'
+main: quarri6343.siritorichat.SiritoriChat
+api-version: 1.16
