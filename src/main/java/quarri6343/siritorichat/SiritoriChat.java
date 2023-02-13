@@ -14,6 +14,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -82,6 +84,13 @@ public final class SiritoriChat extends JavaPlugin implements Listener {
             }, 0);
         } else {
             e.message(Component.text(message + ChatColor.YELLOW + "(" + finalCharacter + ")"));
+            
+            Objective objective = Bukkit.getScoreboardManager().getMainScoreboard().getObjective("chatted");
+            if(objective == null)
+                objective = Bukkit.getScoreboardManager().getMainScoreboard().registerNewObjective("chatted", "dummy", "チャット回数");
+            Score score = objective.getScore(e.getPlayer());
+            score.setScore(score.getScore() + 1);
+            
             currentCharacter = finalCharacter;
         }
     }
